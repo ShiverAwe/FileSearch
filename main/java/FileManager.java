@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FileManager {
 
-    public static List<File> getContentList(File directory){
+    public static List<File> getContentList(File directory) {
         List<File> content;
         File[] listFiles = directory.listFiles();
         if (listFiles != null) {

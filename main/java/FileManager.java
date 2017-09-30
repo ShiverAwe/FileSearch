@@ -20,7 +20,7 @@ public class FileManager {
     public static int countFiles(File directory) {
         int count = 0;
 
-        for (File unit : getContentList(directory)) {
+        for (File unit : directory.listFiles()) {
             if (unit.isDirectory()) count += countFiles(unit);
             if (unit.isFile()) {
                 count += 1;

@@ -4,33 +4,28 @@ import java.util.List;
 
 public class FileProcessor {
 
-    public static int countLetters(File file, char character) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        char c;
-        int count = 0;
-        while ((byte) (c = (char) reader.read()) != -1) {
-            if (character == c) {
-                count++;
-            }
-        }
-        reader.close();
-        return count;
-    }
+    public static List<TextEntry> findTextEntries(File file, String text) throws IOException {
+        List<TextEntry> entries = new ArrayList<>();
 
-    /**
-     * @return File-pointer offsets list for all text entries in file.
-     */
-    public static List<Long> findTextPositions(File file, String text) throws IOException {
+        if (file.isDirectory()) {
+            for (File subfile : file.listFiles()) {
+                entries.addAll(findTextEntries(subfile, text));
+            }
+            return entries;
+        }
+        // else ...
         RandomAccessFile rafile = new RandomAccessFile(file, "r");
-        List<Long> positions = new ArrayList<>();
         SequentialSampleMatcher stringComparator = new SequentialSampleMatcher(text);
         char c;
         while ((byte) (c = (char) rafile.read()) != -1) {
             if (stringComparator.check(c)) {
-                positions.add(rafile.getFilePointer());
+                TextEntry entry = new TextEntry(file, rafile.getFilePointer(), text.length());
+                //entry.loadText();
+                entries.add(entry);
+                //System.out.println(entry);
             }
         }
-        return positions;
+        return entries;
     }
 
     public static void printFile(File file) throws IOException {

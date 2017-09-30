@@ -1,8 +1,11 @@
+import java.util.ArrayDeque;
+
 /**
- * This class is used to compare strings with weak hashes.
- * Hashes are calculated as sum of all chars in string.
+ * This class is used to compare strings with polynomial hashes.
  * Task allows to recalculate hash of next string very fast because of
  * fact, that strings are different only in one char.
+ * Characters which has to be compared with sample string are
+ * stored in custom cyclic queue.
  */
 public class SequentialSampleMatcher {
 

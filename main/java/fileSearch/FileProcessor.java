@@ -1,3 +1,5 @@
+package fileSearch;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class FileProcessor {
         }
         // else ...
         RandomAccessFile rafile = new RandomAccessFile(file, "r");
-        SequentialSampleMatcher stringComparator = new SequentialSampleMatcher(text);
+        ChainMatcher stringComparator = new ChainMatcher(text);
         char c;
         while ((byte) (c = (char) rafile.read()) != -1) {
             if (stringComparator.check(c)) {

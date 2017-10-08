@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 
-import static fileSearch.FileManager.openDialog;
+import static fileSearch.FileUtils.openDialog;
 
 public class EntrySeekerBox extends VBox{
 

@@ -1,7 +1,6 @@
 package fileSearch.UI;
 
-import fileSearch.FileManager;
-import fileSearch.TextEntry;
+import fileSearch.FileUtils;
 import javafx.scene.control.TextArea;
 
 import java.io.File;
@@ -17,7 +16,7 @@ public class FileTextArea extends TextArea {
     }
 
     public void openFileWithDialog() {
-        this.file = FileManager.openDialog();
+        this.file = FileUtils.openDialog();
         openFile(file);
     }
 

@@ -22,14 +22,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
 
-        EntrySeekerBox navigatorBox = new EntrySeekerBox();
+        EntrySeekerBox seekerBox = new EntrySeekerBox();
         EntryTextArea entryTextArea = new EntryTextArea();
         ListView<TextEntry> list = new ListView<>();
 
 
         Button startButton = new Button("Start");
         startButton.setOnMouseClicked(e -> {
-            EntrySeeker seeker = navigatorBox.start();
+            EntrySeeker seeker = seekerBox.start();
             ObservableList<TextEntry> observableList = FXCollections.observableList(seeker.getEntries());
             list.setItems(observableList);
         });
@@ -39,7 +39,7 @@ public class Main extends Application {
 //            entryTextArea.openEntry(entry);
 //        });
 
-        root.getChildren().addAll(navigatorBox, startButton, entryTextArea, list);
+        root.getChildren().addAll(seekerBox, startButton, entryTextArea, list);
         Scene scene = new Scene(root, 720, 450);
         primaryStage.setTitle("JavaFX TextArea");
         primaryStage.setScene(scene);
